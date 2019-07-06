@@ -19,6 +19,10 @@ module.exports = function (RED) {
         });
 
         node.initEventSource = () => {
+            if(!node.haid) {
+                return;
+            }
+
             let url = node.auth.getHost() + '/api/homeappliances/' + node.haid + '/events';
 
             node.eventSource = new EventSource(url, {
